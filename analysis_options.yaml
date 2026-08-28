@@ -19,5 +19,3 @@ linter:
     - prefer_final_fields
     - prefer_final_locals
     - require_trailing_commas
-    - sort_constructors_first
-

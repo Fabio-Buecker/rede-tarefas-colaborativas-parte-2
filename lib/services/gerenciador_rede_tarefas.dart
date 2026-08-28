@@ -115,7 +115,8 @@ class GerenciadorRedeTarefas with AuditoriaMixin {
       (soma, tarefa) => soma + tarefa.progresso,
     );
     final Set<String> etiquetas = <String>{
-      for (final TarefaColaborativa tarefa in tarefas) ...tarefa.etiquetas,
+      for (final TarefaColaborativa tarefa in tarefas)
+        for (final String etiqueta in tarefa.etiquetas) etiqueta,
     };
 
     return <String, Object>{
@@ -182,4 +183,3 @@ class GerenciadorRedeTarefas with AuditoriaMixin {
     return membro;
   }
 }
-
