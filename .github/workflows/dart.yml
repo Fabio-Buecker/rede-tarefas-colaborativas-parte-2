@@ -1,0 +1,30 @@
+name: Dart CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Dart
+        uses: dart-lang/setup-dart@v1
+
+      - name: Instalar dependencias
+        run: dart pub get
+
+      - name: Conferir formatacao
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analisar codigo
+        run: dart analyze --fatal-infos
+
+      - name: Executar testes
+        run: dart test
+

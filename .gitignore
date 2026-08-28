@@ -1,0 +1,30 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+.pub/
+build/
+coverage/
+pubspec.lock
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos temporarios e logs
+*.log
+*.tmp
+*.swp
+
+# Flutter / Android / iOS (preparado para evolucao futura)
+.flutter-plugins
+.flutter-plugins-dependencies
+android/.gradle/
+android/local.properties
+ios/Pods/
+ios/.symlinks/
+
