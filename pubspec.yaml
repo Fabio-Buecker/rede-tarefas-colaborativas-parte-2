@@ -1,12 +1,19 @@
+# Identificador do pacote usado nas diretivas `package:` dos arquivos Dart.
 name: rede_tarefas_colaborativas
+# Resumo exibido por ferramentas do ecossistema Dart.
 description: Modulo de dominio e logica de negocios para uma rede de tarefas colaborativas.
+# Versão semântica atual do projeto.
 version: 1.0.0
+# Impede publicação acidental no repositório público pub.dev.
 publish_to: none
 
+# Intervalo de versões do Dart compatíveis com os recursos usados no código.
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
+# Pacotes necessários apenas durante desenvolvimento, análise e testes.
 dev_dependencies:
+  # Conjunto recomendado de regras de qualidade de código.
   lints: ^5.1.1
+  # Framework que fornece `test`, `expect` e os matchers.
   test: ^1.25.15
-

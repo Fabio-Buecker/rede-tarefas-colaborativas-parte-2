@@ -1,21 +1,32 @@
+# Importa a configuração recomendada pelo pacote `lints` como ponto de partida.
 include: package:lints/recommended.yaml
 
+# Configura verificações estáticas feitas por `dart analyze`.
 analyzer:
   language:
+    # Exige conversões explícitas e inferência de tipos sem ambiguidades.
     strict-casts: true
     strict-inference: true
     strict-raw-types: true
   errors:
+    # Eleva problemas importantes a erro para impedir que passem despercebidos.
     dead_code: error
     invalid_assignment: error
     missing_required_param: error
 
+# Regras adicionais de estilo e segurança aplicadas ao código-fonte.
 linter:
   rules:
+    # Declara explicitamente o tipo retornado por funções e métodos.
     - always_declare_return_types
+    # Evita chamadas sem verificação estática em valores `dynamic`.
     - avoid_dynamic_calls
+    # Prefere canais de saída controlados em vez da função global `print`.
     - avoid_print
+    # Mantém imports e exports em ordem consistente.
     - directives_ordering
+    # Sugere `final` para campos e variáveis locais que não são reatribuídos.
     - prefer_final_fields
     - prefer_final_locals
+    # Exige vírgula final em construções multilinha para facilitar formatação.
     - require_trailing_commas

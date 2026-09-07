@@ -1,10 +1,14 @@
+// API pública do projeto e framework de testes.
 import 'package:rede_tarefas_colaborativas/rede_tarefas_colaborativas.dart';
 import 'package:test/test.dart';
 
+/// Verifica as regras de composição e colaboração de [TarefaColaborativa].
 void main() {
   group('TarefaColaborativa', () {
+    // `late` permite inicializar uma nova tarefa no `setUp` antes de cada teste.
     late TarefaColaborativa tarefa;
 
+    // Evita compartilhamento de estado: cada caso começa com um objeto limpo.
     setUp(() {
       tarefa = TarefaColaborativa(
         id: 't1',
@@ -15,6 +19,7 @@ void main() {
     });
 
     test('usa heranca, composicao e recalcula o progresso com fold', () {
+      // Duas subtarefas com 100% e 0% devem produzir média de 50%.
       tarefa
         ..adicionarSubtarefa(
           Subtarefa(
@@ -32,6 +37,7 @@ void main() {
           ),
         );
 
+      // O setter de progresso também muda automaticamente o status.
       expect(tarefa.progresso, 50);
       expect(tarefa.status, StatusTarefa.emAndamento);
     });
@@ -45,8 +51,10 @@ void main() {
         ),
       );
 
+      // Act: troca o responsável de m1 para m2.
       tarefa.delegarSubtarefa('s1', 'm2');
 
+      // `single` exige e retorna o único elemento da lista.
       expect(tarefa.subtarefas.single.responsavelId, 'm2');
       expect(tarefa.historicoAuditoria, isNotEmpty);
     });
@@ -58,6 +66,7 @@ void main() {
         responsavelId: 'm9',
       );
 
+      // A subtarefa aponta para m9, que não faz parte da tarefa preparada.
       expect(
         () => tarefa.adicionarSubtarefa(subtarefa),
         throwsA(isA<ValidacaoException>()),
@@ -65,6 +74,7 @@ void main() {
     });
 
     test('factory interpreta mapa sem operador de assercao nula', () {
+      // Não usar `!` mantém a leitura segura mesmo com campos opcionais.
       final TarefaColaborativa importada = TarefaColaborativa.fromMap(
         <String, dynamic>{
           'id': 't2',
@@ -76,8 +86,8 @@ void main() {
       );
 
       expect(importada.prioridade, PrioridadeTarefa.alta);
+      // `containsAll` verifica a presença de todos os ids, sem depender da ordem.
       expect(importada.membrosIds, containsAll(<String>['m1', 'm2']));
     });
   });
 }
-
