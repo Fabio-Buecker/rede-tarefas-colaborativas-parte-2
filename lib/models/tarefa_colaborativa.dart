@@ -4,55 +4,64 @@ import '../core/exceptions.dart';
 import 'item_trabalho.dart';
 import 'subtarefa.dart';
 
+/// Tarefa principal compartilhada entre vários membros da rede.
+///
+/// A classe herda as regras de [ItemTrabalho], usa composição ao guardar
+/// objetos [Subtarefa] e recebe auditoria por meio de [AuditoriaMixin].
 class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
+  /// Membro que criou a tarefa e que sempre faz parte dela.
   final String criadorId;
+
+  /// Identificadores únicos dos participantes; `Set` evita repetições.
   final Set<String> _membrosIds;
+
+  /// Marcadores normalizados usados para categorizar a tarefa.
   final Set<String> _etiquetas;
+
+  /// Partes menores de trabalho mantidas na ordem de inclusão.
   final List<Subtarefa> _subtarefas;
 
+  /// Construtor completo de uma tarefa colaborativa.
+  ///
+  /// Os literais com `...` espalham os itens recebidos nas coleções internas.
+  /// O criador é inserido no conjunto mesmo que [membrosIds] não o contenha.
   TarefaColaborativa({
-    required String id,
+    required super.id,
     required String titulo,
     required this.criadorId,
     required Iterable<String> membrosIds,
-    String? descricao,
-    DateTime? prazo,
-    PrioridadeTarefa prioridade = PrioridadeTarefa.media,
-    DateTime? criadoEm,
-    StatusTarefa status = StatusTarefa.pendente,
-    double progresso = 0,
+    super.descricao,
+    super.prazo,
+    super.prioridade = PrioridadeTarefa.media,
+    super.criadoEm,
+    super.status = StatusTarefa.pendente,
+    super.progresso = 0,
     Iterable<String>? etiquetas,
     Iterable<Subtarefa>? subtarefas,
   })  : _membrosIds = <String>{criadorId, ...membrosIds},
+        // `...?` espalha a coleção apenas se ela não for nula.
         _etiquetas = <String>{...?etiquetas},
         _subtarefas = <Subtarefa>[...?subtarefas],
         super(
-          id: id,
           titulo: titulo,
-          descricao: descricao,
-          prazo: prazo,
-          prioridade: prioridade,
-          criadoEm: criadoEm,
-          status: status,
-          progresso: progresso,
         ) {
     if (criadorId.trim().isEmpty) {
       throw const ValidacaoException('O criador da tarefa e obrigatorio.');
     }
+    // Subtarefas preexistentes determinam o progresso inicial da tarefa.
     recalcularProgresso();
     registrarAuditoria('Tarefa "$titulo" criada por $criadorId.');
   }
 
+  /// Construtor nomeado para uma tarefa inicial simples de planejamento.
   TarefaColaborativa.planejamento({
-    required String id,
-    required String titulo,
+    required super.id,
+    required super.titulo,
     required this.criadorId,
   })  : _membrosIds = <String>{criadorId},
         _etiquetas = <String>{'planejamento'},
         _subtarefas = <Subtarefa>[],
         super(
-          id: id,
-          titulo: titulo,
           prioridade: PrioridadeTarefa.baixa,
         ) {
     if (criadorId.trim().isEmpty) {
@@ -61,8 +70,14 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     registrarAuditoria('Tarefa criada pelo construtor nomeado.');
   }
 
+  /// Desserializa uma tarefa e suas subtarefas a partir de um mapa.
+  ///
+  /// Como mapas podem vir de JSON ou cache sem tipos totalmente confiáveis,
+  /// cada coleção é inspecionada antes da conversão. Valores inválidos são
+  /// substituídos por coleções vazias ou pelos padrões dos conversores.
   factory TarefaColaborativa.fromMap(Map<String, dynamic> map) {
     final Object? membrosBrutos = map['membrosIds'];
+    // `whereType<String>` mantém somente elementos que são realmente textos.
     final Set<String> membros = membrosBrutos is Iterable<Object?>
         ? membrosBrutos.whereType<String>().toSet()
         : <String>{};
@@ -76,6 +91,7 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     final List<Subtarefa> subtarefas = subtarefasBrutas is Iterable<Object?>
         ? subtarefasBrutas
             .whereType<Map<Object?, Object?>>()
+            // Cada mapa genérico é convertido e entregue à factory da subtarefa.
             .map(
               (item) => Subtarefa.fromMap(Map<String, dynamic>.from(item)),
             )
@@ -93,8 +109,7 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
       membrosIds: <String>{criadorId, ...membros},
       descricao: map['descricao'] as String?,
       prazo: prazoTexto == null ? null : DateTime.tryParse(prazoTexto),
-      criadoEm:
-          criadoEmTexto == null ? null : DateTime.tryParse(criadoEmTexto),
+      criadoEm: criadoEmTexto == null ? null : DateTime.tryParse(criadoEmTexto),
       prioridade: prioridadeTarefaFromString(map['prioridade'] as String?),
       status: statusTarefaFromString(map['status'] as String?),
       progresso: (map['progresso'] as num?)?.toDouble() ?? 0,
@@ -103,13 +118,18 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     );
   }
 
+  /// Participantes em uma coleção somente de leitura.
   Set<String> get membrosIds => Set<String>.unmodifiable(_membrosIds);
 
+  /// Etiquetas em uma coleção somente de leitura.
   Set<String> get etiquetas => Set<String>.unmodifiable(_etiquetas);
 
-  List<Subtarefa> get subtarefas =>
-      List<Subtarefa>.unmodifiable(_subtarefas);
+  /// Subtarefas em uma lista somente de leitura.
+  List<Subtarefa> get subtarefas => List<Subtarefa>.unmodifiable(_subtarefas);
 
+  /// Inclui um participante válido e registra a ação na auditoria.
+  ///
+  /// Por ser um `Set`, adicionar novamente o mesmo identificador não o duplica.
   void adicionarMembro(String membroId) {
     if (membroId.trim().isEmpty) {
       throw const ValidacaoException('O id do membro nao pode ser vazio.');
@@ -118,6 +138,7 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     registrarAuditoria('Membro $membroId adicionado a tarefa $id.');
   }
 
+  /// Normaliza uma etiqueta em minúsculas e ignora textos vazios.
   void adicionarEtiqueta(String etiqueta) {
     final String valorTratado = etiqueta.trim().toLowerCase();
     if (valorTratado.isNotEmpty) {
@@ -125,7 +146,9 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     }
   }
 
+  /// Anexa uma subtarefa se o id for único e o responsável participar da tarefa.
   void adicionarSubtarefa(Subtarefa subtarefa) {
+    // `any` interrompe a busca assim que encontra uma subtarefa com o mesmo id.
     if (_subtarefas.any((item) => item.id == subtarefa.id)) {
       throw EntidadeDuplicadaException('Subtarefa', subtarefa.id);
     }
@@ -139,6 +162,7 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     registrarAuditoria('Subtarefa ${subtarefa.id} adicionada.');
   }
 
+  /// Transfere uma subtarefa existente para outro membro participante.
   void delegarSubtarefa(String subtarefaId, String novoResponsavelId) {
     if (!_membrosIds.contains(novoResponsavelId)) {
       throw ValidacaoException(
@@ -146,6 +170,7 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
       );
     }
 
+    // `firstWhere` devolve o item correspondente ou lança a exceção de domínio.
     final Subtarefa subtarefa = _subtarefas.firstWhere(
       (item) => item.id == subtarefaId,
       orElse: () =>
@@ -157,6 +182,7 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     );
   }
 
+  /// Conclui a subtarefa indicada e atualiza o progresso agregado da tarefa.
   void concluirSubtarefa(String subtarefaId) {
     final Subtarefa subtarefa = _subtarefas.firstWhere(
       (item) => item.id == subtarefaId,
@@ -168,6 +194,10 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     registrarAuditoria('Subtarefa $subtarefaId concluida.');
   }
 
+  /// Calcula a média aritmética do progresso das subtarefas.
+  ///
+  /// `fold` começa em zero e acumula os percentuais. Uma tarefa sem subtarefas
+  /// mantém seu progresso atual para também poder avançar diretamente.
   void recalcularProgresso() {
     if (_subtarefas.isEmpty) {
       return;
@@ -179,6 +209,7 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     progresso = total / _subtarefas.length;
   }
 
+  /// Avança diretamente a tarefa, respeitando o bloqueio e o limite percentual.
   @override
   void executarPasso(double incremento) {
     if (status == StatusTarefa.bloqueada) {
@@ -192,6 +223,10 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     );
   }
 
+  /// Serializa a tarefa completa, incluindo coleções e subtarefas aninhadas.
+  ///
+  /// Os `for` dentro dos literais criam listas novas. `growable: false` indica
+  /// que a lista de mapas resultante terá tamanho fixo.
   @override
   Map<String, dynamic> toMap() => <String, dynamic>{
         'id': id,
@@ -210,9 +245,8 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
             .toList(growable: false),
       };
 
+  /// Complementa o resumo herdado com quantidades da colaboração.
   @override
-  String toString() =>
-      '${super.toString()}, membros: ${_membrosIds.length}, '
+  String toString() => '${super.toString()}, membros: ${_membrosIds.length}, '
       'subtarefas: ${_subtarefas.length}';
 }
-
