@@ -8,7 +8,7 @@ O projeto implementa, em Dart puro e sem acoplamento com a interface Flutter, o 
 
 - Andre Rezende Muruci de Mendonca
 - Fabio Henrique dos Santos Buecker
-- Juliano
+- Juliano Jean Pierre
 - Davi Checon Bresinski
 - Raphael Picoli Zucolotto
 
