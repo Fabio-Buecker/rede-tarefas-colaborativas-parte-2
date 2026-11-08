@@ -51,16 +51,8 @@ void _cadastrarMembros(GerenciadorRedeTarefas gerenciador) {
   // O literal `<Membro>[...]` fixa o tipo aceito pela lista.
   final List<Membro> membros = <Membro>[
     // Construtor gerativo principal, com e-mail opcional fornecido.
-    Membro(
-      id: 'm1',
-      nome: 'Andre Rezende',
-      email: 'andre@grupo03.edu.br',
-    ),
-    Membro(
-      id: 'm2',
-      nome: 'Fabio Buecker',
-      email: 'fabio@grupo03.edu.br',
-    ),
+    Membro(id: 'm1', nome: 'Andre Rezende', email: 'andre@grupo03.edu.br'),
+    Membro(id: 'm2', nome: 'Fabio Buecker', email: 'fabio@grupo03.edu.br'),
     // Construtor nomeado próprio para um participante sem e-mail.
     Membro.convidado(id: 'm3', nome: 'Juliano'),
     // Factory que converte um mapa, formato comum após decodificar JSON.
@@ -69,11 +61,7 @@ void _cadastrarMembros(GerenciadorRedeTarefas gerenciador) {
       'nome': 'Davi Checon',
       'email': 'davi@grupo03.edu.br',
     }),
-    Membro(
-      id: 'm5',
-      nome: 'Raphael Picoli',
-      email: 'raphael@grupo03.edu.br',
-    ),
+    Membro(id: 'm5', nome: 'Raphael Picoli', email: 'raphael@grupo03.edu.br'),
   ];
 
   // `forEach` recebe a referência do método e o chama para cada membro.
@@ -158,8 +146,9 @@ void _executarFluxos(GerenciadorRedeTarefas gerenciador) {
     ..concluirSubtarefa('t1', 's1')
     ..delegarSubtarefa('t1', 's2', 'm5');
 
-  final List<TarefaColaborativa> emAndamento =
-      gerenciador.filtrarPorStatus(StatusTarefa.emAndamento);
+  final List<TarefaColaborativa> emAndamento = gerenciador.filtrarPorStatus(
+    StatusTarefa.emAndamento,
+  );
   final List<TarefaColaborativa> deFabio = gerenciador.tarefasDoMembro('m2');
 
   stdout.writeln('[OK] Subtarefas inseridas, concluidas e delegadas.');

@@ -38,13 +38,11 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     super.progresso = 0,
     Iterable<String>? etiquetas,
     Iterable<Subtarefa>? subtarefas,
-  })  : _membrosIds = <String>{criadorId, ...membrosIds},
-        // `...?` espalha a coleção apenas se ela não for nula.
-        _etiquetas = <String>{...?etiquetas},
-        _subtarefas = <Subtarefa>[...?subtarefas],
-        super(
-          titulo: titulo,
-        ) {
+  }) : _membrosIds = <String>{criadorId, ...membrosIds},
+       // `...?` espalha a coleção apenas se ela não for nula.
+       _etiquetas = <String>{...?etiquetas},
+       _subtarefas = <Subtarefa>[...?subtarefas],
+       super(titulo: titulo) {
     if (criadorId.trim().isEmpty) {
       throw const ValidacaoException('O criador da tarefa e obrigatorio.');
     }
@@ -58,12 +56,10 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     required super.id,
     required super.titulo,
     required this.criadorId,
-  })  : _membrosIds = <String>{criadorId},
-        _etiquetas = <String>{'planejamento'},
-        _subtarefas = <Subtarefa>[],
-        super(
-          prioridade: PrioridadeTarefa.baixa,
-        ) {
+  }) : _membrosIds = <String>{criadorId},
+       _etiquetas = <String>{'planejamento'},
+       _subtarefas = <Subtarefa>[],
+       super(prioridade: PrioridadeTarefa.baixa) {
     if (criadorId.trim().isEmpty) {
       throw const ValidacaoException('O criador da tarefa e obrigatorio.');
     }
@@ -90,12 +86,10 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
     final Object? subtarefasBrutas = map['subtarefas'];
     final List<Subtarefa> subtarefas = subtarefasBrutas is Iterable<Object?>
         ? subtarefasBrutas
-            .whereType<Map<Object?, Object?>>()
-            // Cada mapa genérico é convertido e entregue à factory da subtarefa.
-            .map(
-              (item) => Subtarefa.fromMap(Map<String, dynamic>.from(item)),
-            )
-            .toList()
+              .whereType<Map<Object?, Object?>>()
+              // Cada mapa genérico é convertido e entregue à factory da subtarefa.
+              .map((item) => Subtarefa.fromMap(Map<String, dynamic>.from(item)))
+              .toList()
         : <Subtarefa>[];
 
     final String? prazoTexto = map['prazo'] as String?;
@@ -229,24 +223,25 @@ class TarefaColaborativa extends ItemTrabalho with AuditoriaMixin {
   /// que a lista de mapas resultante terá tamanho fixo.
   @override
   Map<String, dynamic> toMap() => <String, dynamic>{
-        'id': id,
-        'titulo': titulo,
-        if (descricao != null) 'descricao': descricao,
-        'criadorId': criadorId,
-        'membrosIds': <String>[for (final String id in _membrosIds) id],
-        'etiquetas': <String>[for (final String tag in _etiquetas) tag],
-        'prioridade': prioridade.name,
-        'status': status.name,
-        'progresso': progresso,
-        'criadoEm': criadoEm.toIso8601String(),
-        if (prazo != null) 'prazo': prazo?.toIso8601String(),
-        'subtarefas': _subtarefas
-            .map((subtarefa) => subtarefa.toMap())
-            .toList(growable: false),
-      };
+    'id': id,
+    'titulo': titulo,
+    if (descricao != null) 'descricao': descricao,
+    'criadorId': criadorId,
+    'membrosIds': <String>[for (final String id in _membrosIds) id],
+    'etiquetas': <String>[for (final String tag in _etiquetas) tag],
+    'prioridade': prioridade.name,
+    'status': status.name,
+    'progresso': progresso,
+    'criadoEm': criadoEm.toIso8601String(),
+    if (prazo != null) 'prazo': prazo?.toIso8601String(),
+    'subtarefas': _subtarefas
+        .map((subtarefa) => subtarefa.toMap())
+        .toList(growable: false),
+  };
 
   /// Complementa o resumo herdado com quantidades da colaboração.
   @override
-  String toString() => '${super.toString()}, membros: ${_membrosIds.length}, '
+  String toString() =>
+      '${super.toString()}, membros: ${_membrosIds.length}, '
       'subtarefas: ${_subtarefas.length}';
 }

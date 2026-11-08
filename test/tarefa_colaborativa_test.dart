@@ -1,6 +1,6 @@
 // API pública do projeto e framework de testes.
 import 'package:rede_tarefas_colaborativas/rede_tarefas_colaborativas.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 /// Verifica as regras de composição e colaboração de [TarefaColaborativa].
 void main() {
@@ -30,11 +30,7 @@ void main() {
           ),
         )
         ..adicionarSubtarefa(
-          Subtarefa(
-            id: 's2',
-            titulo: 'Criar servicos',
-            responsavelId: 'm2',
-          ),
+          Subtarefa(id: 's2', titulo: 'Criar servicos', responsavelId: 'm2'),
         );
 
       // O setter de progresso também muda automaticamente o status.

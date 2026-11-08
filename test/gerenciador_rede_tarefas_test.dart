@@ -1,6 +1,6 @@
 // API pública do domínio e biblioteca de testes.
 import 'package:rede_tarefas_colaborativas/rede_tarefas_colaborativas.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 /// Exercita os casos de uso coordenados por [GerenciadorRedeTarefas].
 void main() {
@@ -28,10 +28,11 @@ void main() {
 
     test('filtra, transforma e calcula metricas funcionais', () {
       // Arrange/Act: consulta o mesmo estado por três representações diferentes.
-      final List<TarefaColaborativa> pendentes =
-          gerenciador.filtrarPorStatus(StatusTarefa.pendente);
-      final List<Map<String, Object>> resumos =
-          gerenciador.transformarEmResumos();
+      final List<TarefaColaborativa> pendentes = gerenciador.filtrarPorStatus(
+        StatusTarefa.pendente,
+      );
+      final List<Map<String, Object>> resumos = gerenciador
+          .transformarEmResumos();
       final Map<String, Object> metricas = gerenciador.calcularMetricas();
 
       // Assert: valida quantidade, transformação e agregação.
@@ -45,10 +46,7 @@ void main() {
       gerenciador.alterarConectividade(online: false);
 
       // Passar o método sem parênteses permite que o matcher execute e capture.
-      expect(
-        gerenciador.sincronizar,
-        throwsA(isA<ConectividadeException>()),
-      );
+      expect(gerenciador.sincronizar, throwsA(isA<ConectividadeException>()));
 
       // A conexão restaurada faz a tentativa seguinte completar normalmente.
       gerenciador

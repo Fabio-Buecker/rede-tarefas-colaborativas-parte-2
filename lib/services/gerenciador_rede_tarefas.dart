@@ -87,8 +87,9 @@ class GerenciadorRedeTarefas with AuditoriaMixin {
     // `<void>` define explicitamente o tipo genérico da operação sem retorno.
     executarComAuditoria<void>('delegacao de subtarefa', () {
       _obterMembroObrigatorio(novoResponsavelId);
-      _obterTarefaObrigatoria(tarefaId)
-          .delegarSubtarefa(subtarefaId, novoResponsavelId);
+      _obterTarefaObrigatoria(
+        tarefaId,
+      ).delegarSubtarefa(subtarefaId, novoResponsavelId);
     });
   }
 
@@ -168,10 +169,12 @@ class GerenciadorRedeTarefas with AuditoriaMixin {
       // A condição evita divisão por zero quando não existem tarefas.
       'mediaProgresso': tarefas.isEmpty ? 0.0 : somaProgresso / tarefas.length,
       // `every` exige que todas satisfaçam a condição; `any`, pelo menos uma.
-      'todasConcluidas': tarefas.isNotEmpty &&
+      'todasConcluidas':
+          tarefas.isNotEmpty &&
           tarefas.every((tarefa) => tarefa.status == StatusTarefa.concluida),
-      'possuiBloqueada':
-          tarefas.any((tarefa) => tarefa.status == StatusTarefa.bloqueada),
+      'possuiBloqueada': tarefas.any(
+        (tarefa) => tarefa.status == StatusTarefa.bloqueada,
+      ),
       'etiquetas': etiquetas,
     };
   }

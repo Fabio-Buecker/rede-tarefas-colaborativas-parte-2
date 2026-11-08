@@ -1,5 +1,7 @@
 # Relatorio do Ambiente de Desenvolvimento
 
+> Evidência histórica da AP1B. Para a Parte 2, consulte `docs/ambiente-ap2b.txt` e `docs/VALIDACAO.md`.
+
 - **Projeto:** Rede de Tarefas Colaborativas
 - **Grupo:** 03
 - **Tema:** 07

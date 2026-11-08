@@ -1,0 +1,64 @@
+00:00 +0: loading C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/gerenciador_rede_tarefas_test.dart
+00:00 +0: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/gerenciador_rede_tarefas_test.dart: GerenciadorRedeTarefas filtra, transforma e calcula metricas funcionais
+00:00 +1: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/gerenciador_rede_tarefas_test.dart: GerenciadorRedeTarefas simula queda e recuperacao da conectividade
+00:00 +2: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/gerenciador_rede_tarefas_test.dart: GerenciadorRedeTarefas dispara excecao customizada para membro inexistente
+00:00 +3: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/membro_test.dart: Membro cria membro com construtor gerativo e getter seguro
+00:00 +4: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/membro_test.dart: Membro cria membro por factory fromMap
+00:00 +5: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/membro_test.dart: Membro setter rejeita nome invalido
+00:00 +6: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória cria quadro inicial
+00:00 +7: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória insere e consulta tarefa
+00:00 +8: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Serialização SQLite e JSON Registro realiza roundtrip completo
+00:00 +9: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Serialização SQLite e JSON Registro realiza roundtrip completo
+00:00 +10: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória persiste subtarefa relacionada atomicamente
+00:00 +11: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória persiste subtarefa relacionada atomicamente
+00:00 +12: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória persiste subtarefa relacionada atomicamente
+00:00 +13: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória persiste subtarefa relacionada atomicamente
+00:00 +14: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Serialização SQLite e JSON copyWith preserva tarefa e remoto
+00:00 +15: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória não aceita quadro inexistente
+00:00 +16: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória não aceita quadro inexistente
+00:00 +17: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória não aceita quadro inexistente
+00:00 +18: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória não aceita quadro inexistente
+00:00 +19: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória não aceita quadro inexistente
+00:00 +20: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first incrementa revisão em edições
+00:00 +21: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória exclusão confirmada limpa filhos por FK
+00:00 +22: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first HTTP 500 mantém dados pendentes
+00:00 +23: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória quadro com tarefa não é excluído
+00:00 +24: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first socket offline mantém dados
+00:00 +25: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first ClientException mantém dados
+00:00 +26: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória CRUD de quadros
+00:00 +27: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first timeout mantém pendência
+00:00 +28: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first timeout mantém pendência
+00:00 +29: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória tombstone fica fora de consultas normais
+00:00 +30: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória tombstone fica fora de consultas normais
+00:00 +31: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first edição remota usa PUT
+00:00 +32: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória armazena log de tentativa
+00:00 +33: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/local_dao_test.dart: SQLite real em memória armazena log de tentativa
+00:00 +34: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first JSON inválido mantém pendência
+00:00 +35: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first resposta sem ID mantém pendência
+00:00 +36: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first exclusão esconde local e preserva tombstone
+00:00 +37: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first DELETE remoto confirmado remove tombstone
+00:00 +38: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first DELETE falho conserva tombstone para retry
+00:00 +39: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first exclusão ainda não enviada dispensa HTTP
+00:00 +40: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first retry após falha confirma o mesmo item
+00:00 +41: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first leitura usa somente fonte local
+00:00 +42: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first erro de disco não vira sucesso de rede
+00:00 +43: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first resposta antiga não confirma revisão nova
+00:00 +44: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first sincronizações concorrentes compartilham envio
+00:00 +45: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first GET importado é persistido e não duplica
+00:00 +46: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first GET falho preserva registros anteriores
+00:00 +47: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/offline_repository_test.dart: Repository offline-first GET inválido produz exceção de rede
+00:00 +48: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/responsive_test.dart: (setUpAll)
+00:00 +48: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/tarefa_colaborativa_test.dart: TarefaColaborativa usa heranca, composicao e recalcula o progresso com fold
+00:00 +49: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/responsive_test.dart: dashboard sem overflow em telefone estreito
+00:00 +50: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/responsive_test.dart: dashboard sem overflow em telefone estreito
+00:00 +51: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/responsive_test.dart: dashboard sem overflow em telefone estreito
+00:00 +52: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/responsive_test.dart: dashboard sem overflow em telefone estreito
+00:01 +53: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/widget_test.dart: dashboard renderiza contadores locais
+00:01 +54: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/widget_test.dart: lista renderiza tarefa pendente
+00:01 +55: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/widget_test.dart: busca filtra sem rede
+00:02 +56: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/widget_test.dart: formulario recusa titulo vazio
+00:02 +57: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/widget_test.dart: formulario recusa criador vazio
+00:02 +58: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/widget_test.dart: badge diferencia registro sincronizado
+00:02 +59: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/widget_test.dart: argumentos invalidos mostram tela segura
+00:03 +60: C:/Users/fabio/AppData/Local/Temp/tasklink-ap2b/test/widget_test.dart: navegacao abre detalhes com id tipado
+00:03 +61: All tests passed!

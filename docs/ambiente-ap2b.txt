@@ -1,0 +1,40 @@
+[!] Flutter (Channel stable, 3.47.9, on Microsoft Windows [versÆo 10.0.26300.9711], locale pt-BR) [529ms]
+    • Flutter version 3.47.9 on channel stable at C:\Users\fabio\AppData\Local\Temp\tasklink-flutter-sdk
+    ! The flutter binary is not on your path. Consider adding C:\Users\fabio\AppData\Local\Temp\tasklink-flutter-sdk\bin to your path.
+    ! The dart binary is not on your path. Consider adding C:\Users\fabio\AppData\Local\Temp\tasklink-flutter-sdk\bin to your path.
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision c197ca5199 (10 days ago), 2026-10-29 10:10:20 -0400
+    • Engine revision 89c39edfdf
+    • Dart version 3.13.7
+    • DevTools version 2.60.0
+    • Feature flags: enable-web, enable-linux-desktop, enable-macos-desktop, enable-windows-desktop, enable-android, enable-ios, cli-animations, enable-native-assets, enable-record-use, enable-swift-package-manager, omit-legacy-version-file, enable-lldb-debugging, enable-uiscene-migration
+    • If those were intentional, you can disregard the above warnings; however it is recommended to use "git" directly to perform update checks and upgrades.
+
+[√] Windows Version (Windows 11 or higher, 26H2, 2009) [1.183ms]
+
+[X] Android toolchain - develop for Android devices [233ms]
+    X Unable to locate Android SDK.
+      Install Android Studio from: https://developer.android.com/studio/index.html
+      On first launch it will assist you in installing the Android SDK components.
+      (or visit https://flutter.dev/to/windows-android-setup for detailed instructions).
+      If the Android SDK has been installed to a custom location, please use
+      `flutter config --android-sdk` to update to that location.
+
+
+[√] Chrome - develop for the web [211ms]
+    • Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
+
+[√] Visual Studio - develop Windows apps (Ferramentas de Build do Visual Studio 2026 18.11.3) [209ms]
+    • Visual Studio at C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools
+    • Ferramentas de Build do Visual Studio 2026 version 18.11.12328.437
+    • Windows 10 SDK version 10.0.26100.0
+
+[√] Connected device (3 available) [147ms]
+    • Windows (desktop) • windows • windows-x64    • Microsoft Windows [versÆo 10.0.26300.9711]
+    • Chrome (web)      • chrome  • web-javascript • Google Chrome 156.0.8078.80
+    • Edge (web)        • edge    • web-javascript • Microsoft Edge 156.0.4314.58
+
+[√] Network resources [691ms]
+    • All expected network resources are available.
+
+! Doctor found issues in 2 categories.

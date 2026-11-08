@@ -32,14 +32,14 @@ class EntidadeNaoEncontradaException extends DominioException {
 
   /// Monta automaticamente uma mensagem com o [tipo] e o [id] recebidos.
   const EntidadeNaoEncontradaException(this.tipo, this.id)
-      : super('$tipo com id "$id" nao foi encontrado.');
+    : super('$tipo com id "$id" nao foi encontrado.');
 }
 
 /// Indica tentativa de cadastrar outro objeto com um identificador já usado.
 class EntidadeDuplicadaException extends DominioException {
   /// Cria a mensagem de duplicidade a partir do tipo e do identificador.
   const EntidadeDuplicadaException(String tipo, String id)
-      : super('$tipo com id "$id" ja esta cadastrado.');
+    : super('$tipo com id "$id" ja esta cadastrado.');
 }
 
 /// Indica uma mudança de estado proibida pelas regras de uma tarefa.

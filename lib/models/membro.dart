@@ -12,11 +12,8 @@ class Membro {
   String _nome;
 
   /// Construtor gerativo principal, usado para membros comuns.
-  Membro({
-    required this.id,
-    required String nome,
-    this.email,
-  }) : _nome = nome.trim() {
+  Membro({required this.id, required String nome, this.email})
+    : _nome = nome.trim() {
     // Métodos privados estáticos validam os valores sem depender da instância.
     _validarId(id);
     this.nome = _nome;
@@ -27,11 +24,9 @@ class Membro {
   ///
   /// Ele oferece valores iniciais próprios, mas ainda executa as validações
   /// comuns de identificador e nome.
-  Membro.convidado({
-    required this.id,
-    String nome = 'Convidado',
-  })  : _nome = nome.trim(),
-        email = null {
+  Membro.convidado({required this.id, String nome = 'Convidado'})
+    : _nome = nome.trim(),
+      email = null {
     _validarId(id);
     this.nome = _nome;
   }
@@ -69,10 +64,10 @@ class Membro {
   ///
   /// O `if` dentro do literal inclui `email` somente quando existe um valor.
   Map<String, dynamic> toMap() => <String, dynamic>{
-        'id': id,
-        'nome': nome,
-        if (email != null) 'email': email,
-      };
+    'id': id,
+    'nome': nome,
+    if (email != null) 'email': email,
+  };
 
   /// Garante que o identificador possua ao menos um caractere não vazio.
   static void _validarId(String valor) {

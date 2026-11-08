@@ -43,10 +43,10 @@ abstract class ItemTrabalho {
     DateTime? criadoEm,
     StatusTarefa status = StatusTarefa.pendente,
     double progresso = 0,
-  })  : criadoEm = criadoEm ?? DateTime.now(),
-        _titulo = titulo.trim(),
-        _status = status,
-        _progresso = progresso {
+  }) : criadoEm = criadoEm ?? DateTime.now(),
+       _titulo = titulo.trim(),
+       _status = status,
+       _progresso = progresso {
     // `trim` desconsidera espaços nas extremidades ao validar o identificador.
     if (id.trim().isEmpty) {
       throw const ValidacaoException('O id do item de trabalho e obrigatorio.');
@@ -100,9 +100,7 @@ abstract class ItemTrabalho {
   /// Valida e aplica um novo percentual, ajustando o estado quando necessário.
   set progresso(double novoProgresso) {
     if (novoProgresso < 0 || novoProgresso > 100) {
-      throw const ValidacaoException(
-        'O progresso deve estar entre 0 e 100.',
-      );
+      throw const ValidacaoException('O progresso deve estar entre 0 e 100.');
     }
     _progresso = novoProgresso;
     if (novoProgresso >= 100) {

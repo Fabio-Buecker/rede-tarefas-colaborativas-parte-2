@@ -34,10 +34,8 @@ class Subtarefa extends ItemTrabalho {
     required super.id,
     required super.titulo,
     required String responsavelId,
-  })  : _responsavelId = responsavelId.trim(),
-        super(
-          prioridade: PrioridadeTarefa.baixa,
-        ) {
+  }) : _responsavelId = responsavelId.trim(),
+       super(prioridade: PrioridadeTarefa.baixa) {
     this.responsavelId = _responsavelId;
   }
 
@@ -96,16 +94,16 @@ class Subtarefa extends ItemTrabalho {
   /// consiga reconstruir o objeto posteriormente.
   @override
   Map<String, dynamic> toMap() => <String, dynamic>{
-        'id': id,
-        'titulo': titulo,
-        if (descricao != null) 'descricao': descricao,
-        'responsavelId': responsavelId,
-        'prioridade': prioridade.name,
-        'status': status.name,
-        'progresso': progresso,
-        'criadoEm': criadoEm.toIso8601String(),
-        if (prazo != null) 'prazo': prazo?.toIso8601String(),
-      };
+    'id': id,
+    'titulo': titulo,
+    if (descricao != null) 'descricao': descricao,
+    'responsavelId': responsavelId,
+    'prioridade': prioridade.name,
+    'status': status.name,
+    'progresso': progresso,
+    'criadoEm': criadoEm.toIso8601String(),
+    if (prazo != null) 'prazo': prazo?.toIso8601String(),
+  };
 
   /// Reaproveita o texto da classe-base e acrescenta o responsável.
   @override

@@ -1,7 +1,7 @@
 // Importa a API pública que será verificada.
 import 'package:rede_tarefas_colaborativas/rede_tarefas_colaborativas.dart';
 // Disponibiliza `group`, `test`, `expect`, matchers e utilitários de teste.
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 /// Executa a suíte de testes unitários do modelo [Membro].
 void main() {
@@ -31,10 +31,7 @@ void main() {
       final Membro membro = Membro(id: 'm3', nome: 'Juliano');
 
       // Uma função anônima adia a atribuição para o matcher capturar a exceção.
-      expect(
-        () => membro.nome = 'A',
-        throwsA(isA<ValidacaoException>()),
-      );
+      expect(() => membro.nome = 'A', throwsA(isA<ValidacaoException>()));
     });
   });
 }

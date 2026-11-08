@@ -41,22 +41,22 @@ extension StatusTarefaTexto on StatusTarefa {
   /// O `switch` expression é exaustivo: o compilador exige um caso para cada
   /// valor de [StatusTarefa]. `this` representa a instância atual do enum.
   String get rotulo => switch (this) {
-        StatusTarefa.pendente => 'Pendente',
-        StatusTarefa.emAndamento => 'Em andamento',
-        StatusTarefa.bloqueada => 'Bloqueada',
-        StatusTarefa.concluida => 'Concluida',
-      };
+    StatusTarefa.pendente => 'Pendente',
+    StatusTarefa.emAndamento => 'Em andamento',
+    StatusTarefa.bloqueada => 'Bloqueada',
+    StatusTarefa.concluida => 'Concluida',
+  };
 }
 
 /// Acrescenta um rótulo legível aos valores de [PrioridadeTarefa].
 extension PrioridadeTarefaTexto on PrioridadeTarefa {
   /// Retorna o texto que será exibido para a prioridade atual.
   String get rotulo => switch (this) {
-        PrioridadeTarefa.baixa => 'Baixa',
-        PrioridadeTarefa.media => 'Media',
-        PrioridadeTarefa.alta => 'Alta',
-        PrioridadeTarefa.urgente => 'Urgente',
-      };
+    PrioridadeTarefa.baixa => 'Baixa',
+    PrioridadeTarefa.media => 'Media',
+    PrioridadeTarefa.alta => 'Alta',
+    PrioridadeTarefa.urgente => 'Urgente',
+  };
 }
 
 /// Converte o nome persistido em texto para um [StatusTarefa].
