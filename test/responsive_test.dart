@@ -8,7 +8,7 @@ import 'test_support.dart';
 void main() {
   setUpAll(() async {
     final root = Platform.environment['FLUTTER_ROOT'];
-    if (root != null) {
+    if (root != null && Platform.isWindows) {
       final loader = FontLoader('Roboto');
       loader.addFont(
         File(
