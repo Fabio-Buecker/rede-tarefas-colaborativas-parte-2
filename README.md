@@ -84,6 +84,18 @@ Selecione Android, iOS ou Windows. O projeto usa SQLite nativo e `dart:io`; **We
 
 No Windows, prefira um caminho curto, como `C:\dev\tasklink`, com SDK fora do OneDrive. Foram observadas falhas das ferramentas com espaços/acentos; a validação usou aliases temporários para os mesmos arquivos.
 
+### Gerar o APK Android
+
+Com o Android SDK configurado e as dependências instaladas:
+
+```bash
+flutter build apk --debug
+```
+
+O arquivo é gerado em `build/app/outputs/flutter-apk/app-debug.apk`. Trata-se de um APK de depuração para demonstração, não de uma versão de produção assinada para distribuição. O APK foi gerado em 08/11/2026 e Fábio informou que funcionou no celular. Os binários e diretórios de build não são versionados.
+
+Em 10/11/2026, a suíte local terminou com **61 testes aprovados** após recuperar dependências com `flutter pub get`. Consulte os resultados e seus limites em [validação](docs/VALIDACAO.md).
+
 ## API pública padrão
 
 Endpoint: **https://jsonplaceholder.typicode.com/todos**
@@ -144,6 +156,8 @@ O GET importa modelos por ação explícita no primeiro quadro em ordem alfabét
 Argumentos são verificados em `onGenerateRoute`. Rotas inválidas e entidades inexistentes geram telas informativas.
 
 ## Testes e demonstração
+
+A equipe escolheu a **Modalidade A**: demonstração do app online e offline, simulando queda real de rede, e execução de `flutter test` em **até seis minutos**, seguida de duas perguntas técnicas individuais/sorteadas, conforme o enunciado. A sequência abaixo descreve operações disponíveis para a demonstração e deve ser ensaiada dentro desse limite.
 
 ```bash
 flutter test
